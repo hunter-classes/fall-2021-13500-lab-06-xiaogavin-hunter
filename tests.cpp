@@ -1,7 +1,8 @@
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+ #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 #include "funcs.h"
 #include "caesar.h"
+#include "vigenere.h"
 
 // add your tests here
 
@@ -22,4 +23,16 @@ TEST_CASE("Task B: Implementing Caesar cipher encryption:") {
     }
 }
 
-        
+
+TEST_CASE("Task C: Implementing Vigenere cipher encryption:") { 
+    SUBCASE("Base cases:") { 
+        CHECK(encrypt_vigenere("Hello, World!", "cake") == "Jevpq, Wyvnd!");
+        CHECK(encrypt_vigenere("\\`F~-z_+=\"[]{}';:!@#v$%^&T*()<a>?,./", "test") == "\\`Y~-d_+=\"\x5b\x5d\x7b\x7d';:!@#n$%^&M*()<t>?,./");
+    }
+
+    SUBCASE("Special cases") { 
+        CHECK(encrypt_vigenere("Hello, World!", "@#!@@*!@$UGIF*Y@") == "Impossible keyword");
+        CHECK(encrypt_vigenere("Hello, World!", "1234567890") == "Impossible keyword");
+        CHECK(encrypt_vigenere("Hello, World!", "EGG") == "Lkrpu, Csxrh!");
+    }
+}
