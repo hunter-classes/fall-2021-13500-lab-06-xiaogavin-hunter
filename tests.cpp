@@ -33,6 +33,6 @@ TEST_CASE("Task C: Implementing Vigenere cipher encryption:") {
     SUBCASE("Special cases") { 
         CHECK(encrypt_vigenere("Hello, World!", "@#!@@*!@$UGIF*Y@") == "Impossible keyword");
         CHECK(encrypt_vigenere("Hello, World!", "1234567890") == "Impossible keyword");
-        CHECK(encrypt_vigenere("Hello, World!", "EGG") == "Lkrpu, Csxrh!");
+        CHECK(encrypt_vigenere("Hello, World!", "EGG") == "Lkrpu, Csxrh!o");
     }
 }
