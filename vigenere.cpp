@@ -22,7 +22,7 @@ int get_position_in_array(char input) {
 
 // gets char from the position of the inputted number
 char get_char_cipher(int input, bool is_upper) { 
-    if(input > 26) { 
+    if(input > 25) { 
         return is_upper ? upper[input - 26] : lower[input - 26]; 
     }
 
