@@ -9,7 +9,7 @@ const std::array<char, 26> upper =
 const std::array<char, 26> lower = 
 {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}; 
 
-char shiftChar(char c, int rshift) {  
+char shift_char(char c, int rshift) {  
     int shift = rshift % 26; 
 
     // Go through arrays to find chars and shift them by shift
@@ -29,10 +29,10 @@ char shiftChar(char c, int rshift) {
     return c;
 }
 
-std::string encryptCaesar(std::string plaintext, int rshift) { 
+std::string encrypt_caesar(std::string plaintext, int rshift) { 
     std::string result = "";
     for(int i = 0; i < plaintext.length(); i++) { 
-        result += shiftChar(plaintext.at(i), rshift); 
+        result += shift_char(plaintext.at(i), rshift); 
     }
 
     return result;
