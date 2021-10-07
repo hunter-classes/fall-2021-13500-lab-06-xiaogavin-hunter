@@ -60,6 +60,7 @@ TEST_CASE("Task D: Decryption:") {
     SUBCASE("Vigenere Decrpytion using Vigenere Encryption: ") { 
         CHECK(decrypt_vigenere(encrypt_vigenere("Hello, World!", "cake"), "cake") == "Hello, World!");
         CHECK(decrypt_vigenere(encrypt_vigenere("\\`F~-z_+=\"[]{}';:!@#v$%^&T*()<a>?,./", "test"), "test") == "\\`F~-z_+=\"\x5b\x5d\x7b\x7d';:!@#v$%^&T*()<a>?,./");
+        CHECK(decrypt_vigenere(encrypt_vigenere("Lab 06 Is Complete", "Hello!"), "Hello!") == "Impossible keyword");
     }
 
     SUBCASE("Vigenere Decryption Special Cases:") { 
