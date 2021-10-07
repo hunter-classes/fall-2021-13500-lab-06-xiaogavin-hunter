@@ -14,17 +14,36 @@ char shift_char(char c, int rshift) {
 
     // Go through arrays to find chars and shift them by shift
     // Needed to mod as too large of a rshift will not run the code correctly 
-    for(int i = 0; i < 26; i++) { 
-        if(c == upper[i] && i + shift > 26) {
-            return upper[(shift + i) - 26];
-        } else if(c == lower[i] && i + shift > 26) { 
-            return lower[(shift + i) - 26];
-        } else if(upper[i] == c) { 
-            return upper[i + shift]; 
-        } else if(lower[i] == c) { 
-            return lower[i + shift];
-        } 
+
+    // Need to add negative numbers 
+    if(shift < 0) { 
+        // returns letter for negative shift
+        for(int i = 0; i < 26; i++) { 
+            if(c == upper[i] && i + shift < 0) { // checks for if the shift makes the array go out bounds 
+                return upper[26 + i + shift];
+            } else if(c == lower[i] && i + shift < 0) { 
+                return lower[26 + i + shift];
+            } else if(upper[i] == c) { 
+                return upper[i + shift]; 
+            } else if(lower[i] == c) { 
+                return lower[i + shift];
+            } 
+        }
+    } else { 
+        // returns letter for positive shift
+        for(int i = 0; i < 26; i++) { 
+            if(c == upper[i] && i + shift > 26) {
+                return upper[(shift + i) - 26];
+            } else if(c == lower[i] && i + shift > 26) { 
+                return lower[(shift + i) - 26];
+            } else if(upper[i] == c) { 
+                return upper[i + shift]; 
+            } else if(lower[i] == c) { 
+                return lower[i + shift];
+            } 
+        }
     }
+    
 
     return c;
 }
