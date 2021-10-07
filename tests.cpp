@@ -26,6 +26,8 @@ TEST_CASE("Task B: Implementing Caesar cipher encryption:") {
 
     SUBCASE("Negative rshift values:") { 
         CHECK(encrypt_caesar("If he had anything confidential to say", -10) == "Yv xu xqt qdojxydw sedvytudjyqb je iqo");
+        CHECK(encrypt_caesar("Caesar cipher: Encode and decode online", -300) == "Omqemd oubtqd: Qzoapq mzp pqoapq azxuzq");
+        CHECK(encrypt_caesar("Cryptii Happy Pride", -5) == "Xmtkodd Cvkkt Kmdyz");
     }
 }
 
@@ -52,6 +54,16 @@ TEST_CASE("Task D: Decryption:") {
 
     SUBCASE("Caesar Decryption Special Cases:") { 
         CHECK(decrypt_caesar(encrypt_caesar("!@#$%^&*()!(&)!<>?><???", 26), 26) == "!@#$%^&*()!(&)!<>?><???");
+        CHECK(decrypt_caesar(encrypt_caesar("Cryptii Happy Pride", -32), -32) == "Cryptii Happy Pride"); 
+    }
 
+    SUBCASE("Vigenere Decrpytion using Vigenere Encryption: ") { 
+        CHECK(decrypt_vigenere(encrypt_vigenere("Hello, World!", "cake"), "cake") == "Hello, World!");
+        CHECK(decrypt_vigenere(encrypt_vigenere("\\`F~-z_+=\"[]{}';:!@#v$%^&T*()<a>?,./", "test"), "test") == "\\`F~-z_+=\"\x5b\x5d\x7b\x7d';:!@#v$%^&T*()<a>?,./");
+    }
+
+    SUBCASE("Vigenere Decryption Special Cases:") { 
+        CHECK(decrypt_vigenere(encrypt_vigenere("Hello, World!", "1234567890"), "1234567890") == "Impossible keyword");
+        CHECK(decrypt_vigenere(encrypt_vigenere("Vigenere", "EGG"), "EGG") == "Vigenere");
     }
 }
