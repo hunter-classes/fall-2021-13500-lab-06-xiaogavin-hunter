@@ -69,6 +69,14 @@ std::string decrypt_caesar(std::string ciphertext, int rshift) {
 std::string decrypt_vigenere(std::string ciphertext, std::string keyword) { 
     int keyword_count = 0; 
     std::string result = ""; 
+    
+    for(int i = 0; i < keyword.length(); i++) { 
+        int special_ascii_int = (int)keyword.at(i);
+        
+        if(33 <= special_ascii_int && special_ascii_int <= 64 || 91 <= special_ascii_int && special_ascii_int <= 96 || 123 <= special_ascii_int && special_ascii_int <= 126) { 
+            return "Impossible keyword";
+        }
+    }
 
 // ASCII Letters range, 65 <= x <= 90 && 97 <= x <= 122
     for(int i = 0; i < ciphertext.length(); i++) { 
