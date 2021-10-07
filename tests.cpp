@@ -3,6 +3,7 @@
 #include "funcs.h"
 #include "caesar.h"
 #include "vigenere.h"
+#include "decrypt.h"
 
 // add your tests here
 
@@ -22,6 +23,10 @@ TEST_CASE("Task B: Implementing Caesar cipher encryption:") {
         CHECK(encrypt_caesar("This works!", 400) == "Drsc gybuc!");
         CHECK(encrypt_caesar("To be or not to be, That is the question", 1555) == "Oj wz jm ijo oj wz, Ocvo dn ocz lpznodji");
     }
+
+    SUBCASE("Negative rshift values:") { 
+        CHECK(encrypt_caesar("If he had anything confidential to say", -10) == "Yv xu xqt qdojxydw sedvytudjyqb je iqo");
+    }
 }
 
 // https://cryptii.com/pipes/vigenere-cipher
@@ -36,5 +41,17 @@ TEST_CASE("Task C: Implementing Vigenere cipher encryption:") {
         CHECK(encrypt_vigenere("Hello, World!", "@#!@@*!@$UGIF*Y@") == "Impossible keyword");
         CHECK(encrypt_vigenere("Hello, World!", "1234567890") == "Impossible keyword");
         CHECK(encrypt_vigenere("Hello, World!", "EGG") == "Lkrpu, Csxrh!");
+    }
+}
+
+TEST_CASE("Task D: Decryption:") { 
+    SUBCASE("Caesar Decryption using Caesar Encryption:") { 
+        CHECK(decrypt_caesar(encrypt_caesar("Hello, World!", 10), 10) == "Hello, World!");
+        CHECK(decrypt_caesar(encrypt_caesar("To be or not to be, That is the question", 1555), 1555) == "To be or not to be, That is the question");
+    }
+
+    SUBCASE("Caesar Decryption Special Cases:") { 
+        CHECK(decrypt_caesar(encrypt_caesar("!@#$%^&*()!(&)!<>?><???", 26), 26) == "!@#$%^&*()!(&)!<>?><???");
+
     }
 }
