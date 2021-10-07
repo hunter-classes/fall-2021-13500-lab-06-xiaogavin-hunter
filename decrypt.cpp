@@ -26,16 +26,31 @@ char shift_char_uncipher(char c, int rshift) {
     // Needed to mod as too large of a rshift will not run the code correctly 
     // if(c == upper[i] && i + shift > 26) {
             // return upper[(shift + i) - 26];
-    for(int i = 0; i < 26; i++) { 
-        if(c == upper[i] && i - shift < 0) {
-            return upper[26 - (shift - i)];
-        } else if(c == lower[i] && i - shift < 0) { 
-            return lower[26 - (shift - i)];
-        } else if(upper[i] == c) { 
-            return upper[i - shift]; 
-        } else if(lower[i] == c) { 
-            return lower[i - shift];
-        } 
+    if(shift < 0) {  // (i - shift) - 26
+        for(int i = 0; i < 26; i++) { 
+            if(c == upper[i] && i - shift > 25) {
+                return upper[(i - shift) - 26];
+            } else if(c == lower[i] && i - shift > 25) { 
+                return lower[(i - shift) - 26];
+            } else if(upper[i] == c) { 
+                return upper[i - shift]; 
+            } else if(lower[i] == c) { 
+                return lower[i - shift];
+            }
+            
+        }
+    } else {
+        for(int i = 0; i < 26; i++) { 
+            if(c == upper[i] && i - shift < 0) {
+                return upper[26 - (shift - i)];
+            } else if(c == lower[i] && i - shift < 0) { 
+                return lower[26 - (shift - i)];
+            } else if(upper[i] == c) { 
+                return upper[i - shift]; 
+            } else if(lower[i] == c) { 
+                return lower[i - shift];
+            } 
+        }
     }
 
     return c;
