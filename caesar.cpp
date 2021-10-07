@@ -32,9 +32,9 @@ char shift_char(char c, int rshift) {
     } else { 
         // returns letter for positive shift
         for(int i = 0; i < 26; i++) { 
-            if(c == upper[i] && i + shift > 26) {
+            if(c == upper[i] && i + shift > 25) {
                 return upper[(shift + i) - 26];
-            } else if(c == lower[i] && i + shift > 26) { 
+            } else if(c == lower[i] && i + shift > 25) { 
                 return lower[(shift + i) - 26];
             } else if(upper[i] == c) { 
                 return upper[i + shift]; 
